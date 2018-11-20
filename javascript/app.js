@@ -36,7 +36,7 @@ function gifRequest(topic) {
         gifImage.attr("data-still", stillGif);
         gifDiv.append(ratingText);
         gifDiv.append(gifImage);
-        $(".gifContainer").append(gifDiv);
+        $(".gifContainer").prepend(gifDiv);
 
         }
 
