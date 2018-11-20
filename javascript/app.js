@@ -4,6 +4,7 @@ var apiKey = "6181b0ebaf0342f1b3f5f8e23474b3fe";
 
 // create function to render buttons of each item in our array
 function renderButtons() {
+    // clear previous buttons so not to repeat existing buttons
     $(".buttons").empty();
     for (var i = 0; i < characters.length; i++) {
         var button = $("<button>");
@@ -57,7 +58,7 @@ $("#add-gif").on("click", function (event) {
     renderButtons();
   });
 
-  // Adding click event listeners to all elements with a class of "movie"
+  // Adding click event listeners to all elements with a class of ".gifDiv"
   $(document).on("click", ".gifDiv", renderButtons);
 
 
@@ -71,7 +72,7 @@ $(document).on("click", ".gifBtn", function () {
     gifRequest($(this).text());
 })
 
-$(document).on("click", ".gifDiv", function() {
+$(document).on("click", ".gifImage", function() {
     // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
     var state = $(this).attr("data-state");
     console.log(state);
