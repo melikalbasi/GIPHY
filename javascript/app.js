@@ -1,7 +1,10 @@
+// declare variables 
 var characters = ["Ross", "Rachel", "Phoebe", "Chandler", "Joey", "Monica"];
 var apiKey = "6181b0ebaf0342f1b3f5f8e23474b3fe";
 
+// create function to render buttons of each item in our array
 function renderButtons() {
+    $(".buttons").empty();
     for (var i = 0; i < characters.length; i++) {
         var button = $("<button>");
         button.addClass("gifBtn");
@@ -10,8 +13,9 @@ function renderButtons() {
     }
 }
 
+// function to request gifs with our api key for giphy
 function gifRequest(topic) {
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&limit=10&api_key=" + apiKey;
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&rating=g&rating=pg&limit=10&api_key=" + apiKey;
 
     $.ajax({
         url: queryURL,
@@ -40,6 +44,29 @@ function gifRequest(topic) {
 
 
 
+// This function handles events where the add character button is clicked
+$("#add-gif").on("click", function (event) {
+    event.preventDefault();
+    // This line of code will grab the input from the textbox
+    var friendsChar = $("#gif-input").val().trim();
+
+    // The character from the textbox is then added to our array
+    characters.push(friendsChar);
+
+    // Calling renderButtons which handles the processing of our characters array
+    renderButtons();
+  });
+
+  // Adding click event listeners to all elements with a class of "movie"
+  $(document).on("click", ".gifDiv", renderButtons);
+
+
+
+
+
+
+
+// when document loads, add event listeners to do something
 $(document).on("click", ".gifBtn", function () {
     gifRequest($(this).text());
 })
